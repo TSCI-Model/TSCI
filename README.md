@@ -30,6 +30,9 @@ Our model predicts a distinctive blue-tilted spectrum in the CMB frequency range
 - `numpy`, `scipy`, `matplotlib`
 
 ### Setup
+### Setup
+
+```bash
 # Clone the repository
 git clone https://github.com/TSCI-Model/TSCI.git
 cd TSCI
