@@ -32,9 +32,15 @@ Our model predicts a distinctive blue-tilted spectrum in the CMB frequency range
 ### Prerequisites
 - Python 3.8 or higher
 - `numpy`, `scipy`, `matplotlib`
+# Execute the core simulation to verify the scaling law
+python simulation_core.py
+
+# Generate publication-quality figures for the manuscript
+python scripts/fig2_diamond.py
+python scripts/fig3_action_scaling.py
+python scripts/fig4_sgwb.py
 
 ### Setup
-```bash
-git clone [https://github.com/TSCI-Model/TSCI.git](https://github.com/TSCI-Model/TSCI.git)
+git clone https://github.com/TSCI-Model/TSCI.git
 cd TSCI
 pip install -r requirements.txt
