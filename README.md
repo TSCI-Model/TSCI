@@ -20,27 +20,20 @@ The `simulation_core.py` script performs high-precision analysis of action fluct
 * **Theoretical Expectation**: $\gamma = 0.5$
 * **Numerical Result**: $\gamma = 0.4956 \pm 0.003$ ($R^2 > 0.999$)
 
-
-
 ### 2. SGWB Signature
 Our model predicts a distinctive blue-tilted spectrum in the CMB frequency range, accessible to future missions like **LiteBIRD**.
-
-
 
 ## 🛠 Installation & Usage
 
 ### Prerequisites
 - Python 3.8 or higher
 - `numpy`, `scipy`, `matplotlib`
-# Execute the core simulation to verify the scaling law
-python simulation_core.py
-
-# Generate publication-quality figures for the manuscript
-python scripts/fig2_diamond.py
-python scripts/fig3_action_scaling.py
-python scripts/fig4_sgwb.py
 
 ### Setup
-git clone https://github.com/TSCI-Model/TSCI.git
+```bash
+# Clone the repository
+git clone [https://github.com/TSCI-Model/TSCI.git](https://github.com/TSCI-Model/TSCI.git)
 cd TSCI
+
+# Install dependencies
 pip install -r requirements.txt
