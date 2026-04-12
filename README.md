@@ -35,6 +35,6 @@ Our model predicts a distinctive blue-tilted spectrum in the CMB frequency range
 
 ### Setup
 ```bash
-git clone [https://github.com/TSCI-Model/omega-tsci.git](https://github.com/TSCI-Model/omega-tsci.git)
-cd omega-tsci
+git clone [https://github.com/TSCI-Model/TSCI.git](https://github.com/TSCI-Model/TSCI.git)
+cd TSCI
 pip install -r requirements.txt
