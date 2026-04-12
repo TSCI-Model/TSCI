@@ -1,9 +1,40 @@
-关键术语对照表 (用于正文描述)
-Monte Carlo Samples: 蒙特卡洛采样点
-Weighted Least Squares (WLS) Fit: 加权最小二乘拟合
-Scaling Exponent: 标度指数 (即 γ)
-Root-Mean-Square (RMS) Fluctuation: 均方根涨落
-Infrared (IR) Limit: 红外极限 (大 N 尺度)
-Discreteness Noise: 离散噪声
-Monte Carlo simulation results for the root-mean-square fluctuation of the Benincasa-Dowker action δSBD as a function of the total number of spacetime elements N in 4D Minkowski spacetime. The black circles represent discrete samples with 1σ statistical error bars. The red solid line indicates a Weighted Least Squares (WLS) fit, yielding an empirical scaling exponent of γ=0.50±0.003. This result confirms that the action noise is governed by Poissonian statistics, providing the numerical foundation for the N 
-−1/2 suppression of the effective cosmological constant in the IR limit.
+# Ω-TSCI: Numerical Verification of the Causal Set Scaling Law
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Field: Theoretical Physics](https://img.shields.io/badge/Field-Theoretical%20Physics-red.svg)](https://journals.aps.org/prd/)
+
+This repository contains the core simulation engine and visualization scripts for the **Ω-TSCI (Topological Scaling of Causal Intervals)** model. The project provides numerical evidence supporting the emergent nature of the Cosmological Constant ($\Lambda$) derived from discrete spacetime fluctuations.
+
+## 📖 Overview
+
+The Ω-TSCI framework demonstrates that the observable vacuum energy density is an infrared (IR) residue of Poissonian fluctuations in causal set theory. This repository reproduces the key numerical results presented in the manuscript:
+* **Scaling Law Verification**: Demonstrating $\delta \mathcal{N} \sim \mathcal{N}^{1/2}$ through Monte Carlo simulations.
+* **Causal Geometry**: Visualization of node distribution in 4D causal diamonds.
+* **Observational Predictions**: Spectral integration of the Stochastic Gravitational Wave Background (SGWB) with $n_T \approx -0.5$.
+
+## 🚀 Core Results
+
+### 1. Scaling Exponent Verification
+The `simulation_core.py` script performs high-precision analysis of action fluctuations.
+* **Theoretical Expectation**: $\gamma = 0.5$
+* **Numerical Result**: $\gamma = 0.4956 \pm 0.003$ ($R^2 > 0.999$)
+
+
+
+### 2. SGWB Signature
+Our model predicts a distinctive blue-tilted spectrum in the CMB frequency range, accessible to future missions like **LiteBIRD**.
+
+
+
+## 🛠 Installation & Usage
+
+### Prerequisites
+- Python 3.8 or higher
+- `numpy`, `scipy`, `matplotlib`
+
+### Setup
+```bash
+git clone [https://github.com/TSCI-Model/omega-tsci.git](https://github.com/TSCI-Model/omega-tsci.git)
+cd omega-tsci
+pip install -r requirements.txt
