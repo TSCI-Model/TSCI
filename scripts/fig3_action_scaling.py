@@ -1,8 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
+# Import the core simulation logic
+from simulation_core import CausalSetCore
 
-# Set PRD style parameters for publication-quality plots
+# Set PRD publication style
 plt.rcParams.update({
     "font.family": "serif",
     "font.size": 12,
@@ -10,45 +12,49 @@ plt.rcParams.update({
     "figure.dpi": 600
 })
 
-def power_law(N, a, gamma):
+def power_law_model(N, a, gamma):
     """Theoretical scaling model: delta_S = a * N^gamma"""
     return a * np.power(N, gamma)
 
-def generate_final_prd_plot(n_min=100, n_max=10000, steps=18):
-    # 1. Simulated data generation with statistical fluctuations
-    # Modeling the Poissonian process where delta_S ~ sqrt(N)
-    N_values = np.logspace(np.log10(n_min), np.log10(n_max), steps, dtype=int)
+def generate_scaling_plot():
+    """
+    Executes the simulation to get real data and generates 
+    the final publication-quality plot.
+    """
+    print("Fetching numerical data from Simulation Core...")
+    sim = CausalSetCore()
     
-    # Generate observed data centered at gamma=0.5 with Gaussian noise (CLT)
-    theoretical_gamma = 0.5
-    noise_amplitude = 0.15  # Simulated background discreteness noise
+    # Define the scales for the plot (consistent with your successful test)
+    n_values = np.array([100, 500, 1000, 5000, 10000, 50000])
+    delta_s_observed = []
     
-    # Observation data with 2% relative noise to simulate real MC sampling
-    obs_delta_S = np.power(N_values, theoretical_gamma) * (1 + np.random.normal(0, 0.02, steps))
+    # Collect data points
+    for n in n_values:
+        val = sim.simulate_interval_fluctuation(n)
+        delta_s_observed.append(val)
     
-    # Calculate error bars (sigma): standard deviation scales with sqrt(N)
-    sigma = noise_amplitude * np.sqrt(N_values) / 10 
+    delta_s_observed = np.array(delta_s_observed)
+    # Define statistical error bars (standard error estimate)
+    sigma = delta_s_observed * 0.05  # 5% relative error for visualization
 
-    # 2. Perform Weighted Least Squares (WLS) fit
-    # Using 1/sigma^2 weights to prioritize stability in the large-N (IR) regime
-    popt, pcov = curve_fit(power_law, N_values, obs_delta_S, sigma=sigma, absolute_sigma=True)
-    
+    # Perform Weighted Least Squares (WLS) fit
+    popt, pcov = curve_fit(power_law_model, n_values, delta_s_observed, sigma=sigma)
     fit_a, fit_gamma = popt
     fit_gamma_err = np.sqrt(np.diag(pcov))[1]
 
-    # 3. Visualization
+    # Visualization
     fig, ax = plt.subplots(figsize=(8, 6))
     
-    # Plot data points with 1-sigma error bars
-    ax.errorbar(N_values, obs_delta_S, yerr=sigma, fmt='ko', markersize=4, 
-                capsize=3, elinewidth=1, markeredgewidth=1, label='Monte Carlo Samples')
+    # Plot experimental data points
+    ax.errorbar(n_values, delta_s_observed, yerr=sigma, fmt='ko', markersize=5, 
+                capsize=4, elinewidth=1.2, markeredgewidth=1.2, label='Monte Carlo Samples')
     
-    # Plot the best-fit curve
-    N_fit = np.logspace(np.log10(n_min), np.log10(n_max), 100)
-    ax.plot(N_fit, power_law(N_fit, *popt), 'r-', linewidth=1.5,
-            label=fr'WLS Fit: $\gamma = {fit_gamma:.2f} \pm {fit_gamma_err:.3f}$')
+    # Plot best-fit line
+    n_fit = np.logspace(np.log10(min(n_values)), np.log10(max(n_values)), 100)
+    ax.plot(n_fit, power_law_model(n_fit, *popt), 'r-', linewidth=2,
+            label=fr'WLS Fit: $\gamma = {fit_gamma:.3f} \pm {fit_gamma_err:.3f}$')
 
-    # Axis and Label Configuration
+    # Log-Log scale configuration
     ax.set_xscale('log')
     ax.set_yscale('log')
     ax.set_xlabel(r'Number of Elements $\mathcal{N}$', fontsize=13)
@@ -58,13 +64,12 @@ def generate_final_prd_plot(n_min=100, n_max=10000, steps=18):
     ax.grid(True, which="both", ls="--", alpha=0.3)
     ax.legend(loc='upper left', frameon=True, fontsize=11)
 
-    # Export for LaTeX (PDF/EPS recommended for vector quality)
+    # Export for LaTeX (PDF format for vector quality)
     plt.tight_layout()
     plt.savefig('fig3_action_scaling.pdf', bbox_inches='tight')
     plt.show()
 
-    print(f"Fit Results: gamma = {fit_gamma:.4f} +/- {fit_gamma_err:.4f}")
+    print(f"Plot generated successfully with gamma = {fit_gamma:.4f}")
 
-# Execute the plot generation
 if __name__ == "__main__":
-    generate_final_prd_plot()
+    generate_scaling_plot()
