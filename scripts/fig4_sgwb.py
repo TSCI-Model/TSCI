@@ -47,7 +47,7 @@ def generate_sgwb_spectrum_english():
     # Axis labeling and formatting
     plt.xlabel('Frequency $f$ [Hz]', fontsize=12)
     plt.ylabel(r'Energy Density $\Omega_{gw}(f)$', fontsize=12)
-    plt.title('Predicted SGWB Power Spectrum: $\Omega$-TSCI vs. Inflation', fontsize=14)
+    plt.title(r'Predicted SGWB Power Spectrum: $\Omega$-TSCI vs. Inflation', fontsize=14)
     
     plt.ylim(1e-17, 1e-13)
     plt.grid(True, which="both", ls="-", alpha=0.2)
