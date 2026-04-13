@@ -17,7 +17,12 @@ This repository provides the numerical suite for the Ω-TSCI framework, demonstr
 
 **One-line Execution:**
 ```bash
+# [Step 1] 克隆仓库 (Clone Repository)
 !git clone https://github.com/TSCI-Model/TSCI.git
+
+# [Step 2] 进入目录并执行审计 (Change dir and run Audit)
 %cd TSCI
-!pip install numpy matplotlib scipy
 !python3 verification/cosmo_audit.py
+
+# [Step 3] 生成验证图表 (Generate Verification Plots)
+!python3 observations/galactic_dynamics.py
