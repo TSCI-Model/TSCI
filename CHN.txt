@@ -1,21 +1,5 @@
-core_scaling.py (微观标度模拟)
-cosmo_audit.py (数值审计报告)
-galactic_dynamics.py (星系动力学验证)
-gw_spectrum.py (引力波能谱预言)
 This repository provides the complete numerical implementation for the Ω-TSCI framework, confirming that a single scaling index γ governs dark sector physics.
 本仓库通过四个模块证明：只需一个无量纲常数 γ（由时空离散性决定），即可统一解释从微观引力波能谱到宏观星系转动曲线的所有异常。
-想看数值吻合度？ 请运行 cosmo_audit.py。
-想看物理起源？ 请查看 core_scaling.py。
-想看天文证据？ 请查看 galactic_dynamics.py
-项目结构 (Project Structure)
-为了保持逻辑清晰，本项目采用了模块化架构：
-simulation/: 理论根基模块
-params.py: 全局参数中心。统一管理 γ=0.4977, fc=1.111 等核心常数。
-core_scaling.py: 复现 Fig 3。通过蒙特卡洛模拟验证泊松标度律。
-fig1_diamond.py: 绘制因果钻石（Causal Diamond）几何示意图。
-verification/: 数值审计模块
-cosmo_audit.py: 核心脚本。生成 96% 吻合度的数值报告（Table 1）。
-observations/: 天文观测对比
-galactic_dynamics.py: 复现 Fig 4。对比预测曲线与 SPARC 星系转动数据。
-predictions/: 实验预言
-gw_spectrum.py: 复现 Fig 5。计算张量谱指数 nT≈−0.5 的能谱分布。
+Code为全代码
+代码可在Google Colab运行，方便快捷。
+本代码配对论文 Ω-TSCI: A Unified Geometric Framework for Dark Energy, Dark Matter, and the  Cosmic Dark Sector Ratio  作者为：王世强（Wang Shiqiang）
