@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from simulation.params import a0_pred  # 直接使用预测的 a0 画图
 import matplotlib.pyplot as plt
 import numpy as np
 
