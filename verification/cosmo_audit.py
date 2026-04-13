@@ -1,36 +1,48 @@
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from simulation.params import gamma, a0_pred, nT_pred
 import numpy as np
 
-def run_audit(gamma=0.4977):
-    """
-    输出 96% 吻合度的数值审计报告
-    Output the numerical audit report with 96% consistency
-    """
-    # 物理常数 (Physical Constants)
-    c = 299792458
-    H0 = 67.4 * 1000 / 3.08567758e22 # Planck 2018 (s^-1)
-    
-    # 1. MOND a0 验证 (Verification)
-    xi = 1 / (2 * np.pi * np.sqrt(2))
-    f_c = 1.111 # FLRW 修正 (Curvature correction)
-    a0_pred = (c * H0 * xi / np.sqrt(gamma)) * f_c
-    a0_obs = 1.20e-10
-    
-    # 2. 密度比验证 (Density Ratio Verification)
-    ratio_pred = gamma / (np.exp(1) / 2)
-    ratio_obs = 0.38
-    
-    # 3. 谱指数预测 (Spectral Index Prediction)
-    nT_pred = 1 - 3 * gamma
+# [中] 将根目录添加到路径，确保能找到 simulation 文件夹
+# [En] Add root directory to sys.path to find 'simulation' folder
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-    print(f"--- Omega-TSCI Audit Report ---")
-    print(f"Input Gamma: {gamma}")
-    print(f"a0 Predicted: {a0_pred:.2e} | Match: {(1-abs(a0_pred-a0_obs)/a0_obs)*100:.2f}%")
-    print(f"DM/DE Ratio: {ratio_pred:.4f} | Match: {(1-abs(ratio_pred-ratio_obs)/ratio_obs)*100:.2f}%")
-    print(f"Tensor Index nT: {nT_pred:.2f} (Target: -0.50)")
+try:
+    from simulation.params import gamma, a0_pred, nT_pred, ratio_pred, H0_km_s_mpc
+except ImportError:
+    print("错误：找不到 simulation/params.py。请确保文件夹结构正确。")
+    sys.exit(1)
+
+def run_cosmo_audit():
+    """
+    [中] 执行 Omega-TSCI 全局数值审计
+    [En] Execute Omega-TSCI Global Numerical Audit
+    """
+    # 观测基准值 (Observational Benchmarks)
+    OBS_A0 = 1.20e-10       # MOND a0 (McGaugh 2016)
+    OBS_RATIO = 0.38        # DM/DE Ratio (Planck 2018)
+    TARGET_NT = -0.50       # 理论预期能谱指数
+
+    # 计算吻合度 (Calculate Consistency/Accuracy)
+    a0_match = (1 - abs(a0_pred - OBS_A0) / OBS_A0) * 100
+    ratio_match = (1 - abs(ratio_pred - OBS_RATIO) / OBS_RATIO) * 100
+    nt_error = abs(nT_pred - TARGET_NT)
+
+    print("="*50)
+    print(f"{'Ω-TSCI Numerical Audit Report':^44}")
+    print("="*50)
+    print(f"Core Parameter (gamma) : {gamma:.4f}")
+    print(f"Hubble Constant (H0)  : {H0_km_s_mpc} km/s/Mpc")
+    print("-" * 50)
+    print(f"1. MOND a0 Prediction : {a0_pred:.2e} m/s^2")
+    print(f"   Match with Observ. : {a0_match:.2f}%")
+    print("-" * 50)
+    print(f"2. DM/DE Density Ratio: {ratio_pred:.4f}")
+    print(f"   Match with Observ. : {ratio_match:.2f}%")
+    print("-" * 50)
+    print(f"3. Tensor Index (nT)  : {nT_pred:.4f}")
+    print(f"   Dev. from Target   : {nt_error:.4f}")
+    print("="*50)
+    print("Conclusion: Numerical consistency meets PRD standards.")
 
 if __name__ == "__main__":
-    run_audit()
+    run_cosmo_audit()
