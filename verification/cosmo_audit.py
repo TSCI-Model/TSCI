@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from simulation.params import gamma, a0_pred, nT_pred
 import numpy as np
 
 def run_audit(gamma=0.4977):
