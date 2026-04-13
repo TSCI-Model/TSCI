@@ -1,31 +1,53 @@
-import sys
-import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-# 自动处理路径以调用 params
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-try:
-    from simulation.params import gamma
-except:
-    gamma = 0.4977
-
-def plot_diamond():
-    fig, ax = plt.subplots(figsize=(6, 6))
-    # 绘制钻石边界
-    ax.plot([0, 1, 0, -1, 0], [1, 0, -1, 0, 1], 'k-', lw=2)
-    # 模拟内部泊松洒点
-    points = np.random.uniform(-1, 1, (150, 2))
-    valid_points = points[np.abs(points[:,0]) + np.abs(points[:,1]) <= 1]
-    ax.scatter(valid_points[:,0], valid_points[:,1], s=10, alpha=0.5, c='blue')
+def generate_causal_diamond_v2(N=600):
+    """
+    Generate and plot a 2D Causal Diamond projection.
+    Updated for PRD publication standards with corrected LaTeX rendering.
+    """
+    # Generate Poissonian sprinkling in light-cone coordinates (u, v)
+    u = np.random.uniform(0, 1, N)
+    v = np.random.uniform(0, 1, N)
     
-    ax.set_title("Fig 1: Causal Diamond Geometry")
-    ax.set_aspect('equal')
-    ax.axis('off')
+    # Transform to spacetime coordinates (t, x)
+    t = (u + v) / 2
+    x = (v - u) / 2
     
-    os.makedirs("visualizations", exist_ok=True)
-    plt.savefig("visualizations/fig1_diamond.png")
-    print("Fig 1 saved to visualizations/fig1_diamond.png")
+    # Define causal boundaries (Diamond shape)
+    boundary_x = [0, 0.5, 0, -0.5, 0]
+    boundary_t = [0, 0.5, 1, 0.5, 0]
+    
+    # Set plot style to match PRD font and high resolution
+    plt.rcParams.update({
+        "font.family": "serif",
+        "mathtext.fontset": "cm",
+        "font.size": 11
+    })
+    
+    plt.figure(figsize=(8, 8), dpi=600)
+    
+    # Plotting: Using raw strings r'' to ensure proper LaTeX rendering of \mathcal
+    plt.scatter(x, t, s=12, c='black', alpha=0.7, edgecolors='none', 
+                label=r'Sprinkled Nodes ($\mathcal{N}=' + str(N) + r'$)')
+    
+    # Draw the Causal Horizon/Boundary
+    plt.plot(boundary_x, boundary_t, color='#d62728', lw=2.5, label='Causal Horizon')
+    plt.fill(boundary_x, boundary_t, color='#1f77b4', alpha=0.08)
+    
+    # Formatting axes and labels
+    plt.xlabel(r'Spatial Coordinate $x$', fontsize=12)
+    plt.ylabel(r'Time Coordinate $t$', fontsize=12)
+    plt.title(r'$\Omega$-TSCI Model: Causal Diamond Projection', fontsize=14)
+    
+    plt.legend(loc='upper right', frameon=True, fontsize=10)
+    plt.grid(True, linestyle=':', alpha=0.5)
+    plt.gca().set_aspect('equal', adjustable='box')
+    
+    # Exporting high-resolution vector PDF for publication
+    plt.tight_layout()
+    plt.savefig('fig2_causal_diamond.pdf', bbox_inches='tight')
+    plt.show()
 
 if __name__ == "__main__":
-    plot_diamond()
+    generate_causal_diamond_v2()
