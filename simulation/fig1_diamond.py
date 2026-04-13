@@ -1,3 +1,4 @@
+from params import gamma  # 因为在同一个文件夹，直接导入
 import numpy as np
 import matplotlib.pyplot as plt
 
