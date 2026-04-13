@@ -14,7 +14,7 @@ def simulate_scaling(n_samples=10):
     for N in N_values:
         # 模拟 BD 作用量的泊松分布特性 (Simulate Poisson characteristics of BD action)
         # 理论预测其涨落符合 sqrt(N) (Theoretical prediction: fluctuations ~ sqrt(N))
-        samples = np.random.poisson(N, 100) 
+        samples = np.random.poisson(N, 1500) 
         fluctuations.append(np.std(samples))
 
     # 执行 WLS 拟合 (Perform Weighted Least Squares fitting)
