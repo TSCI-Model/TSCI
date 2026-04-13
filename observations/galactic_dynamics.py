@@ -1,35 +1,60 @@
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from simulation.params import a0_pred  # 直接使用预测的 a0 画图
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
-def plot_rotation_curves(M_solar=1e11):
+# [中] 将根目录添加到路径
+# [En] Add root directory to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+try:
+    from simulation.params import a0_pred, G
+except ImportError:
+    print("错误：无法导入参数中心。")
+    sys.exit(1)
+
+def plot_fig4_rotation_curves(M_solar=1e11):
     """
-    复现 Fig 5: 星系转动曲线
-    Reproduce Fig 5: Galaxy rotation curves
+    [中] 复现 Fig 4: 基于预测 a0 的星系转动曲线
+    [En] Reproduce Fig 4: Rotation curves based on predicted a0
     """
-    G = 6.674e-11
-    M = M_solar * 1.989e30
-    a0 = 1.16e-10 # 基于 gamma=0.4977 的预测值
+    # 建立输出目录
+    output_dir = "observations"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    # 物理设置
+    M = M_solar * 1.989e30  # 转换为千克
+    r_kpc = np.linspace(0.5, 40, 100)
+    r_meters = r_kpc * 3.08567758e19
+
+    # 1. 牛顿引力速度 (Newtonian velocity)
+    v_newton = np.sqrt(G * M / r_meters)
     
-    r_kpc = np.linspace(0.1, 30, 100)
-    r_m = r_kpc * 3.086e19
+    # 2. Ω-TSCI 修正速度 (Modified velocity using a0_pred)
+    # 基于 MOND 极限形式: v^4 = G * M * a0
+    v_tsci_limit = np.power(G * M * a0_pred, 0.25)
     
-    # 牛顿引力 (Newtonian)
-    v_newton = np.sqrt(G * M / r_m)
-    # Omega-TSCI 修正引力 (Modified gravity)
-    v_tsci = (G * M * a0)**0.25
-    # 最终速度 (Final velocity profile)
-    v_final = np.sqrt(v_newton**2 + v_tsci**2)
-    
-    plt.plot(r_kpc, v_final/1000, 'r-', label='$\Omega$-TSCI (Predicted)')
-    plt.plot(r_kpc, v_newton/1000, 'k--', label='Newtonian')
-    plt.title(f"Rotation Curve for $M = 10^{{{np.log10(M_solar):.0f}}} M_\\odot$")
-    plt.xlabel("Radius (kpc)"); plt.ylabel("Velocity (km/s)")
-    plt.legend(); plt.grid(True)
-    plt.show()
+    # 3. 全量速度曲线 (Combined profile)
+    v_total = np.sqrt(v_newton**2 * 0.5 + np.sqrt((v_newton**4)/4 + (v_newton**2 * a0_pred * r_meters))) # 采用标准插值函数形式
+    # 简化显示逻辑：使用预测的 a0 平坦值
+    v_final = np.sqrt(v_newton**2 + v_tsci_limit**2) 
+
+    # 绘图
+    plt.figure(figsize=(9, 5))
+    plt.plot(r_kpc, v_newton/1000, 'k--', label='Newtonian (Baryons Only)')
+    plt.plot(r_kpc, v_final/1000, 'r-', linewidth=2, label=f'Ω-TSCI Prediction ($a_0={a0_pred:.2e}$)')
+    plt.axhline(y=v_tsci_limit/1000, color='blue', linestyle=':', alpha=0.5, label='Flat limit')
+
+    plt.title(f"Fig 4: Galaxy Rotation Curve (Mass=$10^{{{int(np.log10(M_solar))}}} M_\\odot$)")
+    plt.xlabel("Radius (kpc)")
+    plt.ylabel("Circular Velocity (km/s)")
+    plt.legend()
+    plt.grid(True, alpha=0.2)
+
+    save_path = os.path.join(output_dir, "fig4_rotation_curve.png")
+    plt.savefig(save_path)
+    print(f"图表已成功保存至: {save_path}")
 
 if __name__ == "__main__":
-    plot_rotation_curves()
+    plot_fig4_rotation_curves()
