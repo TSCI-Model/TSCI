@@ -17,4 +17,4 @@ This repository provides the numerical suite for the Ω-TSCI framework, demonstr
 
 **One-line Execution:**
 ```bash
-!git clone [https://github.com/TSCI-Model/TSCI.git](https://github.com/TSCI-Model/TSCI.git) && cd TSCI && pip install numpy matplotlib scipy && python3 verification/cosmo_audit.py
+git clone https://github.com/TSCI-Model/TSCI.git && cd TSCI && pip install numpy matplotlib scipy && python3 verification/cosmo_audit.py
