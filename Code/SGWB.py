@@ -10,7 +10,7 @@ def plot_fig5_sgwb_official():
     - LiteBIRD Zone: 灰色/紫色阴影
     """
     f = np.logspace(-18, -1, 300)
-    gamma = 0.4977
+    gamma = 0.4933
     nT_tsci = 1 - 3 * gamma  # 约为 -0.49
     
     # 1. 能谱数据计算
@@ -24,7 +24,7 @@ def plot_fig5_sgwb_official():
         "font.family": "serif",
         "mathtext.fontset": "cm",
         "font.size": 12,
-        "figure.dpi": 300
+        "figure.dpi": 1200
     })
     plt.figure(figsize=(8, 6))
 
