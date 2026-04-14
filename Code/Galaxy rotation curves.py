@@ -8,7 +8,7 @@ def plot_rotation_curves(M_solar=1e11):
     """
     G = 6.674e-11
     M = M_solar * 1.989e30
-    a0 = 1.16e-10 # 基于 gamma=0.4977 的预测值
+    a0 = 1.16e-10 # 基于 gamma=0.4933 的预测值
     
     r_kpc = np.linspace(0.1, 30, 100)
     r_m = r_kpc * 3.086e19
