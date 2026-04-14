@@ -1,6 +1,6 @@
 import numpy as np
 
-def run_audit(gamma=0.4977):
+def run_audit(gamma=0.4933):
     """
     输出 96% 吻合度的数值审计报告
     Output the numerical audit report with 96% consistency
