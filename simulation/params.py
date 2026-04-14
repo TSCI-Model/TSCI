@@ -4,7 +4,7 @@ import numpy as np
 # [En] Unified Parameter Management Center for Omega-TSCI
 
 # --- 核心物理输入 (Core Physical Inputs) ---
-gamma = 0.4977        # 标度指数 (Scaling Index)
+gamma = 0.4933        # 标度指数 (Scaling Index)
 H0_km_s_mpc = 67.4    # 哈勃常数 (Hubble Constant)
 fc = 1.111            # FLRW 几何修正因子 (Curvature Correction)
 
