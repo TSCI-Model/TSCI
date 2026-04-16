@@ -2,13 +2,13 @@ from params import gamma  # 因为在同一个文件夹，直接导入
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
-# 假设你创建了 params.py 来管理参数
+# 假设创建了 params.py 来管理参数
 # from params import H0, fc 
 
 def reproduce_fig3(n_samples=15):
     """
-    [中] 复现论文 Fig 3: 模拟作用量涨落的标度律
-    [En] Reproduce Fig 3: Simulate the scaling law of action fluctuations
+    [中] Fig 3: 模拟作用量涨落的标度律
+    [En] Fig 3: Simulate the scaling law of action fluctuations
     """
     # 扩大模拟范围以匹配论文 (Expand range to match the paper: 10^2 to 10^5)
     N_values = np.logspace(2, 5, n_samples).astype(int)
