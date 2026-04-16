@@ -22,7 +22,7 @@ def plot_gw_spectrum():
         "font.family": "serif",
         "mathtext.fontset": "cm",
         "font.size": 12,
-        "figure.dpi": 300
+        "figure.dpi": 600
     })
 
     plt.figure(figsize=(9, 6.5))
