@@ -15,7 +15,7 @@ except ImportError:
 
 def plot_fig4_rotation_curves(M_solar=1e11):
     """
-    [中] 复现 Fig 4: 基于预测 a0 的星系转动曲线
+    [中] Fig 4: 基于预测 a0 的星系转动曲线
     [En] Reproduce Fig 4: Rotation curves based on predicted a0
     """
     # 建立输出目录
