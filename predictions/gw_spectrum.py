@@ -7,7 +7,7 @@ def plot_gw_spectrum():
     Predict the SGWB spectrum
     """
     f = np.logspace(-18, -1, 100) # 频率范围 (Frequency range)
-    gamma = 0.4977
+    gamma = 0.4933
     nT = 1 - 3 * gamma # 约为 -0.5
     
     # 能谱密度 (Energy density scaling)
