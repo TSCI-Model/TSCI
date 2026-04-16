@@ -32,7 +32,7 @@ def generate_monte_carlo_scaling():
         "font.size": 12
     })
     
-    plt.figure(figsize=(8, 6), dpi=300)
+    plt.figure(figsize=(8, 6), dpi=600)
     
     # 原始数据点
     plt.scatter(log_N, log_F, alpha=0.7, c='royalblue', edgecolors='k', 
