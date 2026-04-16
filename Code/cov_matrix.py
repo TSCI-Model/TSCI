@@ -39,7 +39,7 @@ cbar.set_label("Correlation coefficient", fontsize=12)
 ax.plot([0, N-1], [0, N-1], 'w--', linewidth=0.5, alpha=0.5)
 
 plt.tight_layout()
-plt.savefig("cov_matrix.png", dpi=300)
+plt.savefig("cov_matrix.png", dpi=600)
 plt.show()
 
 # 图形已保存为 cov_matrix.png
