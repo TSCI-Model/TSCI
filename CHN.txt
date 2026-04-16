@@ -1,5 +1,7 @@
 This repository provides the complete numerical implementation for the Ω-TSCI framework, confirming that a single scaling index γ governs dark sector physics.
 本仓库通过四个模块证明：只需一个无量纲常数 γ（由时空离散性决定），即可统一解释从微观引力波能谱到宏观星系转动曲线的所有异常。
-Code为全代码
+Code为全代码 包含以下两个论文全部代码 两个论文互相印证 
 代码可在Google Colab运行，方便快捷。
 本代码配对论文 Ω-TSCI: A Unified Geometric Framework for Dark Energy, Dark Matter, and the  Cosmic Dark Sector Ratio  作者为：王世强（Wang Shiqiang）
+            Emergent Entropic Scaling and Causal Structure from Minimal Discrete Axioms   作者为：王世强 (Wang Shiqiang)
+以上论文都已投稿PRD作为时间戳
