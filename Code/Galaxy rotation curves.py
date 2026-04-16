@@ -3,8 +3,8 @@ import numpy as np
 
 def plot_rotation_curves(M_solar=1e11):
     """
-    复现 Fig 5: 星系转动曲线
-    Reproduce Fig 5: Galaxy rotation curves
+    Fig 5: 星系转动曲线
+    Fig 5: Galaxy rotation curves
     """
     G = 6.674e-11
     M = M_solar * 1.989e30
