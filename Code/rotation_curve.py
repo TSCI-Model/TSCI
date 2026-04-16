@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-# --- 1200 DPI 专家配置 ---
+# --- 1200 DPI配置 ---
 os.makedirs("final_submission_figs", exist_ok=True)
 plt.rcParams.update({
     "font.family": "serif",
@@ -16,7 +16,7 @@ def draw_fig2_final_220():
     r = np.linspace(0.1, 45, 400)
     
     # 1. 理论渐近速度：根据 M = 10^11 M_sun 和 a0 = 1.165e-10 计算
-    v_inf = 219.2  # 极其接近你描述的 220
+    v_inf = 219.2  # 速度
     
     # 2. 重子成分模型 (Baryonic Component)
     # 峰值在 5kpc 附近，随后下降
