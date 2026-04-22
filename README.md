@@ -5,10 +5,20 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TSCI-Model/TSCI)
 
 ## 1. 简介 (Introduction)
-本仓库包含了论文 **《Ω-TSCI: A Unified Geometric Framework for Dark Energy, Dark Matter, and the Cosmic Dark Sector Ratio》** 的完整数值验证代码。通过分析因果集（Causal Set）拓扑标度指数 $\gamma$，我们实现了对宇宙学常数、MOND 临界加速度 $a_0$ 以及暗物质/暗能量比例的统一推导。
+This repository contains the complete numerical validation suite for the Ω-TSCI framework, including code and data accompanying the following papers:
 
-This repository provides the numerical suite for the Ω-TSCI framework, demonstrating how a single topological scaling index $\gamma$ derived from causal set fluctuations governs the cosmic dark sector.
+Ω-TSCI: A Unified Geometric Framework for Dark Energy, Dark Matter, and the Cosmic Dark Sector Ratio
+GNSS clock anomalies as a test of non‑factorizable geometry: a discrete causal prediction
+Objective Quantum Decoherence from Non‑factorizable Geometry: a First‑Principles Extension of the Ω‑TSCI Framework
+The suite demonstrates how a single topological scaling index γ simultaneously governs the cosmological constant, the MOND critical acceleration a₀, the dark‑matter‑to‑dark‑energy ratio, the GNSS noon‑midnight clock anomaly, and the anisotropic decoherence rate, providing a unified, first‑principles description of the dark sector and the quantum‑classical transition.
 
+
+本仓库包含 Ω-TSCI 框架的完整数值验证代码集，涵盖以下论文：
+
+《Ω-TSCI：暗能量、暗物质与宇宙暗区比率的统一几何框架》
+《GNSS 钟差异常作为非因子化几何的检验：离散因果预言》
+《基于非因子化几何的客观量子退相干：Ω-TSCI 框架的第一性原理扩展》
+本代码集展示了单一拓扑标度指数 γ 如何同时决定宇宙学常数、MOND 临界加速度 a₀、暗物质与暗能量密度比、GNSS 正午‑午夜钟差异常以及各向异性退相干率，从而以统一的第一性原理描述暗区及量子‑经典过渡。
 ---
 
 ## 2. 快速开始 (Quick Start for Google Colab)
