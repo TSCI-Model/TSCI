@@ -9,7 +9,6 @@ N_values = np.geomspace(2000, 500000, 30).astype(int)
 realizations = 150  # 每组 N 增加到 150 次重复实验以降低统计涨落
 
 # 2. 模拟高精度物理涨落函数
-# 假设真实物理演化规律符合 gamma = 0.4851
 def simulate_physical_data(N_list, true_gamma=0.4851, noise_level=0.015):
     np.random.seed(42)
     means = []
